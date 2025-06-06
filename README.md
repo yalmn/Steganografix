@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/Steg_Logo_Marked.png.png" alt="Steganografix Logo Logo" height="300"/>
+  <img src="docs/Steg_Logo_Marked.png" alt="Steganografix Logo Logo" height="300"/>
 </p>
 
 # 🕵️‍♂️ Steganografix
