@@ -1,35 +1,37 @@
-# Compiler und Flags
+# Compiler & Flags
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c11 -Iinclude
-LDFLAGS = 
+CFLAGS = -Wall -Wextra -std=c11 -Iinclude -I/usr/local/opt/openssl/include
+LDFLAGS = -L/usr/local/opt/openssl/lib -lcrypto
 
 # Verzeichnisse
 SRC_DIR = src
-INC_DIR = include
 OBJ_DIR = build
+INC_DIR = include
 
-# Quell- und Objektdateien
+# Quelldateien & Objektdateien
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
-# Zielprogramm
+# Zielname
 TARGET = steganografix
 
 # Default-Target
 all: $(TARGET)
 
-# Erzeuge Build-Verzeichnis falls nötig
+# Erstelle build-Verzeichnis falls nötig
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-# Kompilieren der Objektdateien
+# Baue Objektdateien
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Linken
+# Linken zum finalen Binärprogramm
 $(TARGET): $(OBJS)
-	$(CC) $(LDFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
-# Clean-Target
+# Aufräumen
 clean:
 	rm -rf $(OBJ_DIR) $(TARGET)
+
+
