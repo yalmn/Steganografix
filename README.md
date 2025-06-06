@@ -132,7 +132,7 @@ Steganografix/
 
 Pull Requests, Issues, Forks – alles willkommen!
 
-> Bei Interesse an AES-256, Passwort-Derivation, LSB-Embedding oder forensischen Analysen: [Melde dich!](mailto:deine@email.de)
+> Bei Interesse an AES-256, Passwort-Derivation, LSB-Embedding oder forensischen Analysen: [Melde dich!](mailto:halil@yalman.io)
 
 ---
 
