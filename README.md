@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/Steg_Logo_Marked.png.png" alt="Steganografix Logo Logo" height="300"/>
+</p>
+
 # 🕵️‍♂️ Steganografix
 
 **Steganografix** ist ein leichtgewichtiges, modulares C-Tool zur **steganografischen Einbettung** und **Extraktion** von Daten in Binärdateien (z. B. `.bin`, `.bmp`, `.wav`, `.exe`), mit optionaler **Verschlüsselung** (XOR oder AES-128-CBC).
