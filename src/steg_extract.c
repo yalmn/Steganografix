@@ -7,8 +7,8 @@
 
 #define MARKER_START "STEGO_START"
 #define MARKER_END   "STEGO_END"
-#define MARKER_START_LEN 10
-#define MARKER_END_LEN   8
+#define MARKER_START_LEN strlen(MARKER_START)
+#define MARKER_END_LEN   strlen(MARKER_END)
 
 // Kompatibel zu macOS: eigener memmem-Ersatz
 void *memsearch(const void *haystack, size_t haystack_len, const void *needle, size_t needle_len) {
