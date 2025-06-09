@@ -143,6 +143,19 @@ Steganografix/
 └── README.md              # Dieses Dokument
 ```
 
+## GUI
+
+Eine einfache grafische Oberfläche (`gui.py`) ermöglicht das Einbetten und
+Extrahieren von Daten ohne Kommandozeile. Nach dem Bauen des Projekts mit
+`make` kann die GUI über
+
+```bash
+python3 gui.py
+```
+
+gestartet werden. Dort lassen sich Eingabedateien, Payload, Schlüssel,
+Verschlüsselungsart und Ausgabeverzeichnis bequem auswählen.
+
 ---
 
 ##  Status & Erweiterungen
