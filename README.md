@@ -18,6 +18,7 @@
 -  **Modularer Aufbau:** klare Trennung von Logik und CLI
 -  **CLI mit Argumenten:** `--key`, `--aes`, `--xor`, `--help`
 -  **Farbausgabe** für Logs (Erfolg, Info, Fehler)
+-  **LSB-Steganografie für Bilder** (`.png`, `.jpg`, zufällige Pixelpositionen)
 
 ---
 
@@ -49,12 +50,14 @@ make
 
 ```bash
 ./steganografix embed <input_file> <payload_file> <output_file> [--key=yourkey] [--aes|--xor]
+./steganografix embed-lsb <image.png|image.jpg> <payload_file> <output_image> [--key=yourkey] [--aes|--xor]
 ```
 
 ###  Extrahieren
 
 ```bash
 ./steganografix extract <input_file> <output_payload_file> [--key=yourkey] [--aes|--xor]
+./steganografix extract-lsb <image.png|image.jpg> <output_payload_file> [--key=yourkey] [--aes|--xor]
 ```
 
 ###  Hilfe anzeigen
@@ -89,6 +92,13 @@ make
 ```bash
 ./steganografix embed audio.wav config.json out.wav --key=SuperSecure --aes
 ./steganografix extract out.wav recovered.json --key=SuperSecure --aes
+```
+
+###  LSB-Bilder
+
+```bash
+./steganografix embed-lsb pic.png secret.txt stego.png --key=secret --aes
+./steganografix extract-lsb stego.png recovered.txt --key=secret --aes
 ```
 
 ---
@@ -127,7 +137,7 @@ Steganografix/
 | CLI mit `--key`, `--aes` |  Fertig  |
 | `--help` Funktion        |  Fertig  |
 | Fortschrittsanzeige      |  Optional |
-| LSB-Steganografie        |  Geplant  |
+| LSB-Steganografie        |  Fertig  |
 | GUI (Qt, GTK)            |  Möglich  |
 
 ---

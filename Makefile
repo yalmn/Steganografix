@@ -1,7 +1,7 @@
 # Compiler & Flags
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11 -Iinclude -I/usr/local/opt/openssl/include
-LDFLAGS = -L/usr/local/opt/openssl/lib -lcrypto
+LDFLAGS = -L/usr/local/opt/openssl/lib -lcrypto -lm
 
 # Verzeichnisse
 SRC_DIR = src
