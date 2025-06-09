@@ -4,7 +4,7 @@
 
 # 🕵️‍♂️ Steganografix
 
-**Steganografix** ist ein leichtgewichtiges, modulares C-Tool zur **steganografischen Einbettung** und **Extraktion** von Daten in Binärdateien (z. B. `.bin`, `.bmp`, `.wav`, `.exe`), mit optionaler **Verschlüsselung** (XOR oder AES-128-CBC).
+**Steganografix** ist ein leichtgewichtiges, modulares C-Tool zur **steganografischen Einbettung** und **Extraktion** von Daten in Binärdateien (z. B. `.bin`, `.bmp`, `.wav`, `.exe`) mit optionaler **Verschlüsselung** (XOR oder AES‑128‑CBC).
 
 ---
 
@@ -18,6 +18,8 @@
 -  **Modularer Aufbau:** klare Trennung von Logik und CLI
 -  **CLI mit Argumenten:** `--key`, `--aes`, `--xor`, `--help`
 -  **Farbausgabe** für Logs (Erfolg, Info, Fehler)
+  -  **LSB-Steganografie für Bilder:** nur `.png` und `.jpg`; zufällige
+     Pixelpositionen werden anhand des Schlüssels bestimmt
 
 ---
 
@@ -49,12 +51,14 @@ make
 
 ```bash
 ./steganografix embed <input_file> <payload_file> <output_file> [--key=yourkey] [--aes|--xor]
+./steganografix embed-lsb <image.png|image.jpg> <payload_file> <output_image> [--key=yourkey] [--aes|--xor]
 ```
 
 ###  Extrahieren
 
 ```bash
 ./steganografix extract <input_file> <output_payload_file> [--key=yourkey] [--aes|--xor]
+./steganografix extract-lsb <image.png|image.jpg> <output_payload_file> [--key=yourkey] [--aes|--xor]
 ```
 
 ###  Hilfe anzeigen
@@ -91,16 +95,39 @@ make
 ./steganografix extract out.wav recovered.json --key=SuperSecure --aes
 ```
 
+###  LSB-Bilder
+
+```bash
+./steganografix embed-lsb pic.png secret.txt stego.png --key=secret --aes
+./steganografix extract-lsb stego.png recovered.txt --key=secret --aes
+```
+
 ---
+
+### Beispielszenario: Geheime Nachricht im Bild
+
+Alice möchte Bob eine kurze Textdatei zusenden, ohne dass sie leicht entdeckt wird. Sie nutzt ein Urlaubsfoto und bettet die Datei mithilfe von `embed-lsb` ein:
+
+```bash
+./steganografix embed-lsb urlaub.png geheim.txt urlaub_stego.png --key=urlaub2024 --aes
+```
+
+Bob extrahiert die versteckte Botschaft mit demselben Schlüssel:
+
+```bash
+./steganografix extract-lsb urlaub_stego.png nachricht.txt --key=urlaub2024 --aes
+```
+
+Dank der zufälligen Pixelwahl lässt sich die Nachricht ohne Schlüssel kaum entfernen.
 
 ##  Use Cases
 
-| Szenario                         | Beschreibung                                                             |
-|----------------------------------|---------------------------------------------------------------------------|
-|  **Versteckter Transport**     | Sensible Konfigurationsdaten unauffällig in Audio-/Binärdateien einbetten |
-|  **Datenübertragung im Feld** | Integrierte Payloads in Firmware-/Logdateien versenden                    |
-|  **Sicherheitsforschung**      | Steganografie- und Kryptografie-Analysen testen                           |
-|  **Forensik & OSINT**         | Versteckte Daten extrahieren und entschlüsseln                            |
+| Szenario                     | Beschreibung |
+|------------------------------|------------------------------------------------------------------------------|
+| **Versteckter Transport**    | Sensible Konfigurationsdaten unauffällig in Audio- oder Binärdateien einbetten |
+| **Datenübertragung im Feld** | Integrierte Payloads in Firmware- oder Logdateien versenden |
+| **Sicherheitsforschung**     | Steganografie- und Kryptografie-Analysen testen |
+| **Forensik & OSINT**         | Versteckte Daten extrahieren und entschlüsseln |
 
 ---
 
@@ -127,7 +154,7 @@ Steganografix/
 | CLI mit `--key`, `--aes` |  Fertig  |
 | `--help` Funktion        |  Fertig  |
 | Fortschrittsanzeige      |  Optional |
-| LSB-Steganografie        |  Geplant  |
+| LSB-Steganografie        |  Fertig  |
 | GUI (Qt, GTK)            |  Möglich  |
 
 ---
